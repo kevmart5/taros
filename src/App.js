@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Home from './Pages/Home';
+import Header from './Components/Header';
+import CarInformation from './Pages/CarInformation';
 
 import './App.css';
 
@@ -9,25 +11,13 @@ function App() {
 	return (
 		<Router>
 			<div>
-				<nav>
-					<ul>
-						<li>
-							<Link to='/'>Home</Link>
-						</li>
-						<li>
-							<Link to='/about'>About</Link>
-						</li>
-						<li>
-							<Link to='/users'>Users</Link>
-						</li>
-					</ul>
-				</nav>
+				<Header />
 				<Switch>
 					<Route path='/about'>
 						<About />
 					</Route>
-					<Route path='/users'>
-						<Users />
+					<Route path='/carInformation'>
+						<CarInformation />
 					</Route>
 					<Route path='/'>
 						<Home />
@@ -40,10 +30,6 @@ function App() {
 
 function About() {
 	return <h2>About</h2>;
-}
-
-function Users() {
-	return <h2>Users</h2>;
 }
 
 export default App;

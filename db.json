@@ -1,0 +1,23 @@
+{
+	"cars": [
+		{
+			"id": 1,
+			"auto": "Volkswagen Jetta",
+			"motor": "2000",
+			"year": "2001",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Kevin Martinez Ellis"
+		}
+	],
+	"users": [
+		{
+			"id": 1,
+			"firstName": "Kevin",
+			"lastName": "Martinez",
+			"identification": "115360896",
+			"location": "Guadalupe"
+		}
+	],
+	"owner": { "firstName": "Eugenio", "lastName": "Chinchilla" }
+}
