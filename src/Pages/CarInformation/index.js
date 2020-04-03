@@ -1,20 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Paper from '@material-ui/core/Paper';
 import {
 	FormGroup,
 	FormControl,
-	FormLabel,
-	InputLabel,
-	Input,
 	FormHelperText,
 	Button,
 	TextField
@@ -42,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CarInformation = ({ saveCarInformation }) => {
-	const [initialValues, setInitialValues] = useState({});
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>

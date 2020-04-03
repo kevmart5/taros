@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uniqueId from 'lodash/uniqueId';
 // Actions
@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 
 const Home = ({ getAllCars, cars }) => {
 	const classes = useStyles();
-	const [carData, setCarData] = useState([]);
 	useEffect(() => {
 		getAllCars();
 	}, []);
