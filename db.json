@@ -113,7 +113,9 @@
 			"mileage": "350000",
 			"spareParts": "Lista de repuestos",
 			"procedures": "Procedimientos que se le hicieron al carro",
-			"comments": "Rótula derecha pronto cambio"
+			"comments": "Rótula derecha pronto cambio",
+			"pendings": "Queda pendiente cambiar las rótulas delanteras",
+			"observations": "El carro mantiene una fuga en la tapa del carter"
 		}
 	],
 	"owner": {

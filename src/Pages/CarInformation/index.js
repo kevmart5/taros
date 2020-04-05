@@ -5,7 +5,10 @@ import { FaRegFolder } from 'react-icons/fa';
 
 // Actions
 import { getCarInfo } from '../../redux/actionCreators/cars/getCarInfo';
-import { getCarReports } from '../../redux/actionCreators/reports/getCarReports';
+import {
+	getCarReports,
+	getCarFixesReports,
+} from '../../redux/actionCreators/reports/getCarReports';
 
 //Components
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,22 +25,15 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 
 import './styles.css';
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-		maxWidth: 752,
-	},
-	demo: {
-		backgroundColor: theme.palette.background.paper,
-	},
-	title: {
-		margin: theme.spacing(4, 0, 2),
-	},
-}));
-
-const CarInformation = ({ getCarInfo, car, getCarReports, reports }) => {
+const CarInformation = ({
+	getCarInfo,
+	car,
+	getCarReports,
+	reports,
+	getCarFixesReports,
+	fixes,
+}) => {
 	const { id } = useParams();
-	const classes = useStyles();
 	const history = useHistory();
 
 	const goToChangeFluid = (params) => {
@@ -46,9 +42,18 @@ const CarInformation = ({ getCarInfo, car, getCarReports, reports }) => {
 			state: { change: params },
 		});
 	};
+
+	const goToFixes = (params) => {
+		history.push({
+			pathname: '/car-fixes',
+			state: { fix: params },
+		});
+	};
+
 	useEffect(() => {
 		getCarInfo(id);
 		getCarReports(id);
+		getCarFixesReports(id);
 	}, []);
 	return (
 		<Container maxWidth='xl'>
@@ -93,30 +98,46 @@ const CarInformation = ({ getCarInfo, car, getCarReports, reports }) => {
 								</Typography>
 							</Grid>
 							<Grid item xs={12} md={6}>
-								<div className={classes.demo}>
-									<List
-										subheader={
-											<ListSubheader>Cambios de aceite y fluídos</ListSubheader>
-										}
-									>
-										{reports.map((report) => (
-											<ListItem
-												button
-												key={report.id}
-												onClick={() => goToChangeFluid(report)}
-											>
-												<ListItemIcon>
-													<FaRegFolder
-														style={{
-															marginRight: '8%',
-														}}
-													/>
-												</ListItemIcon>
-												<ListItemText primary={report.procedureDate} />
-											</ListItem>
-										))}
-									</List>
-								</div>
+								<List
+									subheader={
+										<ListSubheader>Cambios de aceite y fluídos</ListSubheader>
+									}
+								>
+									{reports.map((report) => (
+										<ListItem
+											button
+											key={report.id}
+											onClick={() => goToChangeFluid(report)}
+										>
+											<ListItemIcon>
+												<FaRegFolder
+													style={{
+														marginRight: '8%',
+													}}
+												/>
+											</ListItemIcon>
+											<ListItemText primary={report.procedureDate} />
+										</ListItem>
+									))}
+								</List>
+								<List subheader={<ListSubheader>Reparaciones</ListSubheader>}>
+									{fixes.map((fix) => (
+										<ListItem
+											button
+											key={fix.id}
+											onClick={() => goToFixes(fix)}
+										>
+											<ListItemIcon>
+												<FaRegFolder
+													style={{
+														marginRight: '8%',
+													}}
+												/>
+											</ListItemIcon>
+											<ListItemText primary={fix.date} />
+										</ListItem>
+									))}
+								</List>
 							</Grid>
 						</CardContent>
 					</Card>
@@ -130,12 +151,14 @@ const mapStateToProps = (state) => {
 	return {
 		car: state.cars.current,
 		reports: state.reports.reports,
+		fixes: state.reports.fixes,
 	};
 };
 
 const mapDispatchToProps = {
 	getCarInfo,
 	getCarReports,
+	getCarFixesReports,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarInformation);

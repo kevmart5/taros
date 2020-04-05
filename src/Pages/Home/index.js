@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
 import { FaPen, FaTrashAlt, FaRegEye } from 'react-icons/fa';
 // Actions
@@ -28,6 +28,10 @@ const useStyles = makeStyles({
 
 const Home = ({ getAllCars, cars }) => {
 	const classes = useStyles();
+	const history = useHistory();
+	const goToCarInfo = (id) => {
+		history.push(`/car-information/${id}`);
+	};
 	useEffect(() => {
 		getAllCars();
 	}, []);
@@ -52,7 +56,12 @@ const Home = ({ getAllCars, cars }) => {
 							</TableHead>
 							<TableBody>
 								{cars.map((car) => (
-									<TableRow key={uniqueId('car')}>
+									<TableRow
+										hover
+										role='checkbox'
+										onClick={() => goToCarInfo(car.id)}
+										key={uniqueId('car')}
+									>
 										<TableCell component='th' scope='row'>
 											{car.owner}
 										</TableCell>
@@ -65,18 +74,6 @@ const Home = ({ getAllCars, cars }) => {
 													marginRight: '8%',
 												}}
 											/>
-											<Link
-												to={`/car-information/${car.id}`}
-												className='car--link-info'
-											>
-												<FaRegEye
-													onClick={() => console.log('Click go to car')}
-													style={{
-														marginRight: '8%',
-													}}
-												/>
-											</Link>
-
 											<FaTrashAlt onClick={() => console.log('Click delete')} />
 										</TableCell>
 									</TableRow>

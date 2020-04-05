@@ -6,7 +6,8 @@ import Header from './Components/Header';
 import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
 import FluidChanges from './Pages/FluidChages';
-
+import CarFixes from './Pages/CarFixes';
+import HomePage from './Pages/HomePage';
 import './App.css';
 
 function App() {
@@ -26,6 +27,12 @@ function App() {
 					</Route>
 					<Route exact path='/fluid-changes'>
 						<FluidChanges />
+					</Route>
+					<Route exact path='/car-fixes'>
+						<CarFixes />
+					</Route>
+					<Route exact path='/home-page'>
+						<HomePage />
 					</Route>
 				</Switch>
 			</div>
