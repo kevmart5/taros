@@ -1,23 +1,62 @@
 {
-	"cars": [
-		{
-			"id": 1,
-			"auto": "Volkswagen Jetta",
-			"motor": "2000",
-			"year": "2001",
-			"cc": "4",
-			"plate": "415035",
-			"owner": "Kevin Martinez Ellis"
-		}
-	],
-	"users": [
-		{
-			"id": 1,
-			"firstName": "Kevin",
-			"lastName": "Martinez",
-			"identification": "115360896",
-			"location": "Guadalupe"
-		}
-	],
-	"owner": { "firstName": "Eugenio", "lastName": "Chinchilla" }
+  "cars": [
+    {
+      "id": 1,
+      "auto": "Volkswagen Jetta",
+      "motor": "2000",
+      "year": "2001",
+      "cc": "4",
+      "plate": "415035",
+      "owner": "Kevin Martinez Ellis"
+    },
+    {
+      "id": 2,
+      "auto": "Mercedez Benz",
+      "motor": "1600",
+      "year": "1990",
+      "cc": "4",
+      "plate": "415035",
+      "owner": "Eugenio Chinchilla"
+    },
+    {
+      "id": 3,
+      "auto": "Suziki Alto",
+      "motor": "1400",
+      "year": "2008",
+      "cc": "4",
+      "plate": "415035",
+      "owner": "Alejandro Alpizar"
+    },
+    {
+      "id": 4,
+      "auto": "Toyota Yaris",
+      "motor": "1600",
+      "year": "2010",
+      "cc": "4",
+      "plate": "415035",
+      "owner": "Silvia Castro"
+    },
+    {
+      "auto": "Suzuki Jimny",
+      "motor": "1500",
+      "year": "2019",
+      "cc": "4",
+      "plate": "415035",
+      "owner": "Silvia Jimena Castro Fernandez",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Kevin",
+      "lastName": "Martinez",
+      "identification": "115360896",
+      "location": "Guadalupe"
+    }
+  ],
+  "owner": {
+    "firstName": "Eugenio",
+    "lastName": "Chinchilla"
+  }
 }

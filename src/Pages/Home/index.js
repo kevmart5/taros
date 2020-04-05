@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import uniqueId from 'lodash/uniqueId';
+import { FaPen, FaTrashAlt } from 'react-icons/fa';
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
+
+//Components
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -17,8 +20,8 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
 	table: {
-		minWidth: 650
-	}
+		minWidth: 650,
+	},
 });
 
 const Home = ({ getAllCars, cars }) => {
@@ -45,10 +48,11 @@ const Home = ({ getAllCars, cars }) => {
 									<TableCell align='right'>Año</TableCell>
 									<TableCell align='right'>CC</TableCell>
 									<TableCell align='right'>Placa</TableCell>
+									<TableCell align='right'>Opciones</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{cars.map(car => (
+								{cars.map((car) => (
 									<TableRow key={uniqueId('car')}>
 										<TableCell component='th' scope='row'>
 											{car.owner}
@@ -58,6 +62,15 @@ const Home = ({ getAllCars, cars }) => {
 										<TableCell align='right'>{car.year}</TableCell>
 										<TableCell align='right'>{car.cc}</TableCell>
 										<TableCell align='right'>{car.plate}</TableCell>
+										<TableCell align='right'>
+											<FaPen
+												onClick={() => console.log('Click edit')}
+												style={{
+													marginRight: '10%',
+												}}
+											/>
+											<FaTrashAlt onClick={() => console.log('Click delete')} />
+										</TableCell>
 									</TableRow>
 								))}
 							</TableBody>
@@ -69,14 +82,14 @@ const Home = ({ getAllCars, cars }) => {
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		cars: state.cars.cars
+		cars: state.cars.cars,
 	};
 };
 
 const mapDispatchToProps = {
-	getAllCars
+	getAllCars,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

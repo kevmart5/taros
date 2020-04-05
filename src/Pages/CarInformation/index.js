@@ -7,7 +7,7 @@ import {
 	FormControl,
 	FormHelperText,
 	Button,
-	TextField
+	TextField,
 } from '@material-ui/core';
 
 import { Formik } from 'formik';
@@ -17,18 +17,18 @@ import { saveCarInformation } from '../../redux/actionCreators/saveCarInfo';
 
 import './styles.css';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
-		padding: 20
+		padding: 20,
 	},
 	paper: {
 		height: 140,
-		width: 100
+		width: 100,
 	},
 	control: {
-		padding: theme.spacing(2)
-	}
+		padding: theme.spacing(2),
+	},
 }));
 
 const CarInformation = ({ saveCarInformation }) => {
@@ -42,12 +42,12 @@ const CarInformation = ({ saveCarInformation }) => {
 				<Grid item xs={12}>
 					<Formik
 						initialValues={{
-							auto: 'Volkswagen',
+							auto: '',
 							motor: '',
 							year: '',
 							cc: '',
 							plate: '',
-							owner: ''
+							owner: '',
 						}}
 						onSubmit={(values, { setSubmitting }) => {
 							saveCarInformation(values);
@@ -64,7 +64,7 @@ const CarInformation = ({ saveCarInformation }) => {
 							handleChange,
 							handleBlur,
 							handleSubmit,
-							isSubmitting
+							isSubmitting,
 							/* and other goodies */
 						}) => (
 							<form onSubmit={handleSubmit}>
@@ -172,14 +172,14 @@ const CarInformation = ({ saveCarInformation }) => {
 	);
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
-		car: state.cars.current
+		car: state.cars.current,
 	};
 };
 
 const mapDispatchToProps = {
-	saveCarInformation
+	saveCarInformation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarInformation);
