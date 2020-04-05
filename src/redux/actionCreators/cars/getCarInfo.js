@@ -9,7 +9,7 @@ export function getCarInfo(carId) {
 			type: carsActions.CAR_INFO_REQUEST,
 		});
 		axios
-			.get(`${PORT}/cars${carId}`)
+			.get(`${PORT}/cars/${carId}`)
 			.then((response) => {
 				try {
 					const { data } = response;

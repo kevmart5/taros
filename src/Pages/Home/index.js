@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
 import { FaPen, FaTrashAlt, FaRegEye } from 'react-icons/fa';
 // Actions
@@ -15,8 +16,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 import Container from '@material-ui/core/Container';
+
+import './styles.css';
 
 const useStyles = makeStyles({
 	table: {
@@ -69,12 +71,18 @@ const Home = ({ getAllCars, cars }) => {
 													marginRight: '8%',
 												}}
 											/>
-											<FaRegEye
-												onClick={() => console.log('Click go to car')}
-												style={{
-													marginRight: '8%',
-												}}
-											/>
+											<Link
+												to={`/car-information/${car.id}`}
+												className='car--link-info'
+											>
+												<FaRegEye
+													onClick={() => console.log('Click go to car')}
+													style={{
+														marginRight: '8%',
+													}}
+												/>
+											</Link>
+
 											<FaTrashAlt onClick={() => console.log('Click delete')} />
 										</TableCell>
 									</TableRow>

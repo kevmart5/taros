@@ -20,7 +20,7 @@ function App() {
 					<Route exact path='/car-register'>
 						<CarRegister />
 					</Route>
-					<Route exact path='/car-information'>
+					<Route exact path='/car-information/:id'>
 						<CarInformation />
 					</Route>
 				</Switch>

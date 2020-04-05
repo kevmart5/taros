@@ -15,9 +15,6 @@ const Header = () => {
 					<Link to='/car-register' className='navigation-link'>
 						Registro carro
 					</Link>
-					<Link to='/car-information' className='navigation-link'>
-						Información
-					</Link>
 				</nav>
 			</Grid>
 		</Container>
