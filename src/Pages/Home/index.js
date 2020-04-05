@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uniqueId from 'lodash/uniqueId';
-import { FaPen, FaTrashAlt } from 'react-icons/fa';
+import { FaPen, FaTrashAlt, FaRegEye } from 'react-icons/fa';
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
 
@@ -66,7 +66,13 @@ const Home = ({ getAllCars, cars }) => {
 											<FaPen
 												onClick={() => console.log('Click edit')}
 												style={{
-													marginRight: '10%',
+													marginRight: '8%',
+												}}
+											/>
+											<FaRegEye
+												onClick={() => console.log('Click go to car')}
+												style={{
+													marginRight: '8%',
 												}}
 											/>
 											<FaTrashAlt onClick={() => console.log('Click delete')} />

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Header from './Components/Header';
+import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
 
 import './App.css';
@@ -13,23 +14,19 @@ function App() {
 			<div>
 				<Header />
 				<Switch>
-					<Route path='/about'>
-						<About />
-					</Route>
-					<Route path='/carInformation'>
-						<CarInformation />
-					</Route>
-					<Route path='/'>
+					<Route exact path='/'>
 						<Home />
+					</Route>
+					<Route exact path='/car-register'>
+						<CarRegister />
+					</Route>
+					<Route exact path='/car-information'>
+						<CarInformation />
 					</Route>
 				</Switch>
 			</div>
 		</Router>
 	);
-}
-
-function About() {
-	return <h2>About</h2>;
 }
 
 export default App;

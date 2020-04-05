@@ -12,11 +12,11 @@ const Header = () => {
 					<Link to='/' className='navigation-link'>
 						Home
 					</Link>
-					<Link to='/carInformation' className='navigation-link'>
+					<Link to='/car-register' className='navigation-link'>
 						Registro carro
 					</Link>
-					<Link to='/about' className='navigation-link'>
-						About
+					<Link to='/car-information' className='navigation-link'>
+						Información
 					</Link>
 				</nav>
 			</Grid>
