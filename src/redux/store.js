@@ -7,9 +7,12 @@ import reducer from './reducers';
 const logger = createLogger({
 	collapsed: true,
 	duration: true,
-	diff: true
+	diff: true,
 });
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+	reducer,
+	composeWithDevTools(applyMiddleware(thunk, logger))
+);
 
 console.log('state:', store.getState());
 
