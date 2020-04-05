@@ -1,62 +1,125 @@
 {
-  "cars": [
-    {
-      "id": 1,
-      "auto": "Volkswagen Jetta",
-      "motor": "2000",
-      "year": "2001",
-      "cc": "4",
-      "plate": "415035",
-      "owner": "Kevin Martinez Ellis"
-    },
-    {
-      "id": 2,
-      "auto": "Mercedez Benz",
-      "motor": "1600",
-      "year": "1990",
-      "cc": "4",
-      "plate": "415035",
-      "owner": "Eugenio Chinchilla"
-    },
-    {
-      "id": 3,
-      "auto": "Suziki Alto",
-      "motor": "1400",
-      "year": "2008",
-      "cc": "4",
-      "plate": "415035",
-      "owner": "Alejandro Alpizar"
-    },
-    {
-      "id": 4,
-      "auto": "Toyota Yaris",
-      "motor": "1600",
-      "year": "2010",
-      "cc": "4",
-      "plate": "415035",
-      "owner": "Silvia Castro"
-    },
-    {
-      "auto": "Suzuki Jimny",
-      "motor": "1500",
-      "year": "2019",
-      "cc": "4",
-      "plate": "415035",
-      "owner": "Silvia Jimena Castro Fernandez",
-      "id": 5
-    }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "firstName": "Kevin",
-      "lastName": "Martinez",
-      "identification": "115360896",
-      "location": "Guadalupe"
-    }
-  ],
-  "owner": {
-    "firstName": "Eugenio",
-    "lastName": "Chinchilla"
-  }
+	"cars": [
+		{
+			"id": 1,
+			"auto": "Volkswagen Jetta",
+			"motor": "2000",
+			"year": "2001",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Kevin Martinez Ellis"
+		},
+		{
+			"id": 2,
+			"auto": "Mercedez Benz",
+			"motor": "1600",
+			"year": "1990",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Eugenio Chinchilla"
+		},
+		{
+			"id": 3,
+			"auto": "Suziki Alto",
+			"motor": "1400",
+			"year": "2008",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Alejandro Alpizar"
+		},
+		{
+			"id": 4,
+			"auto": "Toyota Yaris",
+			"motor": "1600",
+			"year": "2010",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Silvia Castro"
+		},
+		{
+			"auto": "Suzuki Jimny",
+			"motor": "1500",
+			"year": "2019",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Silvia Jimena Castro Fernandez",
+			"id": 5
+		}
+	],
+	"users": [
+		{
+			"id": 1,
+			"firstName": "Kevin",
+			"lastName": "Martinez",
+			"identification": "115360896",
+			"location": "Guadalupe"
+		}
+	],
+	"reports": [
+		{
+			"id": 1,
+			"car": 1,
+			"procedureDate": "04/04/2020",
+			"mileage": "350000",
+			"type": "20/50",
+			"brand": "Cam 2",
+			"quantity": "4 cuartos y medio",
+			"nextMileage": "400000",
+			"nextDate": "07/04/2020",
+			"fixes": 1
+		},
+		{
+			"id": 2,
+			"car": 1,
+			"procedureDate": "15/01/2020",
+			"mileage": "350000",
+			"type": "20/50",
+			"brand": "Cam 2",
+			"quantity": "4 cuartos y medio",
+			"nextMileage": "400000",
+			"nextDate": "07/04/2020",
+			"fixes": 1
+		},
+		{
+			"id": 3,
+			"car": 3,
+			"procedureDate": "04/04/2020",
+			"mileage": "350000",
+			"type": "20/50",
+			"brand": "Cam 2",
+			"quantity": "4 cuartos y medio",
+			"nextMileage": "400000",
+			"nextDate": "07/04/2020",
+			"fixes": 1
+		},
+		{
+			"id": 4,
+			"car": 2,
+			"procedureDate": "04/04/2020",
+			"mileage": "350000",
+			"type": "20/50",
+			"brand": "Cam 2",
+			"quantity": "4 cuartos y medio",
+			"nextMileage": "400000",
+			"nextDate": "07/04/2020",
+			"fixes": 1
+		}
+	],
+	"fixes": [
+		{
+			"id": 1,
+			"car": 1,
+			"date": "01/01/2020",
+			"mileage": "350000",
+			"spareParts": "Lista de repuestos",
+			"procedures": "Procedimientos que se le hicieron al carro",
+			"comments": "Rótula derecha pronto cambio",
+			"pendings": "Queda pendiente cambiar las rótulas delanteras",
+			"observations": "El carro mantiene una fuga en la tapa del carter"
+		}
+	],
+	"owner": {
+		"firstName": "Eugenio",
+		"lastName": "Chinchilla"
+	}
 }

@@ -44,6 +44,23 @@ function carsReducer(state = INITIAL_STATE, action) {
 				error: action.error,
 				isLoading: false,
 			};
+		case carsActions.CAR_INFO_REQUEST:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case carsActions.CAR_INFO_SUCCESS:
+			return {
+				...state,
+				current: { ...action.payload },
+				isLoading: false,
+			};
+		case carsActions.CAR_INFO_FAILURE:
+			return {
+				...state,
+				error: action.error,
+				isLoading: false,
+			};
 		default:
 			return state;
 	}

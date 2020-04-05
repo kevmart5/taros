@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Header from './Components/Header';
+import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
-
+import FluidChanges from './Pages/FluidChages';
+import CarFixes from './Pages/CarFixes';
+import HomePage from './Pages/HomePage';
 import './App.css';
 
 function App() {
@@ -13,23 +16,28 @@ function App() {
 			<div>
 				<Header />
 				<Switch>
-					<Route path='/about'>
-						<About />
+					<Route exact path='/'>
+						<Home />
 					</Route>
-					<Route path='/carInformation'>
+					<Route exact path='/car-register'>
+						<CarRegister />
+					</Route>
+					<Route exact path='/car-information/:id'>
 						<CarInformation />
 					</Route>
-					<Route path='/'>
-						<Home />
+					<Route exact path='/fluid-changes'>
+						<FluidChanges />
+					</Route>
+					<Route exact path='/car-fixes'>
+						<CarFixes />
+					</Route>
+					<Route exact path='/home-page'>
+						<HomePage />
 					</Route>
 				</Switch>
 			</div>
 		</Router>
 	);
-}
-
-function About() {
-	return <h2>About</h2>;
 }
 
 export default App;
