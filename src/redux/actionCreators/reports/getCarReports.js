@@ -1,32 +1,32 @@
-import { carsActions } from '../../actions';
+import { reportsActions } from '../../actions';
 import axios from 'axios';
 import { backendConstants } from '../../../constants/index';
 
-export function getAllCars() {
+export function getCarReports(carId) {
 	const { PORT } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
-			type: carsActions.CARS_GETALL_REQUEST,
+			type: reportsActions.REPORTS_BY_CAR_REQUEST,
 		});
 		axios
-			.get(`${PORT}/cars`)
+			.get(`${PORT}/reports?car=${carId}`)
 			.then((response) => {
 				try {
 					const { data } = response;
 					dispatch({
-						type: carsActions.CARS_GETALL_SUCCESS,
+						type: reportsActions.REPORTS_BY_CAR_SUCCESS,
 						payload: data,
 					});
 				} catch (err) {
 					dispatch({
-						type: carsActions.CARS_GETALL_FAILURE,
+						type: reportsActions.REPORTS_BY_CAR_FAILURE,
 						error: err,
 					});
 				}
 			})
 			.catch((error) => {
 				dispatch({
-					type: carsActions.CARS_GETALL_FAILURE,
+					type: reportsActions.REPORTS_BY_CAR_FAILURE,
 					error: error,
 				});
 			});

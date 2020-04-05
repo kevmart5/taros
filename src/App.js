@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import Header from './Components/Header';
 import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
+import FluidChanges from './Pages/FluidChages';
 
 import './App.css';
 
@@ -22,6 +23,9 @@ function App() {
 					</Route>
 					<Route exact path='/car-information/:id'>
 						<CarInformation />
+					</Route>
+					<Route exact path='/fluid-changes'>
+						<FluidChanges />
 					</Route>
 				</Switch>
 			</div>

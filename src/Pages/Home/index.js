@@ -46,9 +46,6 @@ const Home = ({ getAllCars, cars }) => {
 								<TableRow>
 									<TableCell>Cliente</TableCell>
 									<TableCell align='right'>Vehículo</TableCell>
-									<TableCell align='right'>Motor</TableCell>
-									<TableCell align='right'>Año</TableCell>
-									<TableCell align='right'>CC</TableCell>
 									<TableCell align='right'>Placa</TableCell>
 									<TableCell align='right'>Opciones</TableCell>
 								</TableRow>
@@ -60,9 +57,6 @@ const Home = ({ getAllCars, cars }) => {
 											{car.owner}
 										</TableCell>
 										<TableCell align='right'>{car.auto}</TableCell>
-										<TableCell align='right'>{car.motor}</TableCell>
-										<TableCell align='right'>{car.year}</TableCell>
-										<TableCell align='right'>{car.cc}</TableCell>
 										<TableCell align='right'>{car.plate}</TableCell>
 										<TableCell align='right'>
 											<FaPen
