@@ -8,6 +8,33 @@
 			"cc": "4",
 			"plate": "415035",
 			"owner": "Kevin Martinez Ellis"
+		},
+		{
+			"id": 2,
+			"auto": "Mercedez Benz",
+			"motor": "1600",
+			"year": "1990",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Eugenio Chinchilla"
+		},
+		{
+			"id": 3,
+			"auto": "Suziki Alto",
+			"motor": "1400",
+			"year": "2008",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Alejandro Alpizar"
+		},
+		{
+			"id": 4,
+			"auto": "Toyota Yaris",
+			"motor": "1600",
+			"year": "2010",
+			"cc": "4",
+			"plate": "415035",
+			"owner": "Silvia Castro"
 		}
 	],
 	"users": [

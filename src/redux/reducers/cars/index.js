@@ -3,7 +3,7 @@ const INITIAL_STATE = {
 	cars: [],
 	isLoading: false,
 	error: '',
-	current: {}
+	current: {},
 };
 
 function carsReducer(state = INITIAL_STATE, action) {
@@ -11,38 +11,38 @@ function carsReducer(state = INITIAL_STATE, action) {
 		case carsActions.CARS_GETALL_REQUEST:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
 			};
 
 		case carsActions.CARS_GETALL_SUCCESS:
 			return {
 				...state,
-				cars: [...state.cars, ...action.payload],
-				isLoading: false
+				cars: [...action.payload],
+				isLoading: false,
 			};
 
 		case carsActions.CARS_GETALL_FAILURE:
 			return {
 				...state,
 				error: action.error,
-				isLoading: false
+				isLoading: false,
 			};
 		case carsActions.CAR_SAVE_REQUEST:
 			return {
 				...state,
-				isLoading: true
+				isLoading: true,
 			};
 		case carsActions.CAR_SAVE_SUCCESS:
 			return {
 				...state,
 				current: { ...action.payload },
-				isLoading: false
+				isLoading: false,
 			};
 		case carsActions.CAR_SAVE_FAILURE:
 			return {
 				...state,
 				error: action.error,
-				isLoading: false
+				isLoading: false,
 			};
 		default:
 			return state;
