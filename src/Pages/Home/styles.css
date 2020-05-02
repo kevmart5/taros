@@ -1,3 +1,6 @@
+.main-container {
+	flex-grow: 1;
+}
 .car--link-info {
 	text-decoration: none;
 }

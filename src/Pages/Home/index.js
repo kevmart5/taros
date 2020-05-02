@@ -36,7 +36,7 @@ const Home = ({ getAllCars, cars }) => {
 		getAllCars();
 	}, []);
 	return (
-		<Container maxWidth='xl'>
+		<Container maxWidth='xl' className='main-container'>
 			<Grid container>
 				<Grid container item lg={12} spacing={3}>
 					<div>

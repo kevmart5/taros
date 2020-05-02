@@ -8,35 +8,38 @@ import CarInformation from './Pages/CarInformation';
 import FluidChanges from './Pages/FluidChages';
 import CarFixes from './Pages/CarFixes';
 import HomePage from './Pages/HomePage';
+import Sidebar from './Components/Sidebar';
 import './App.css';
 
 function App() {
 	return (
-		<Router>
-			<div>
-				<Header />
-				<Switch>
-					<Route exact path='/'>
-						<Home />
-					</Route>
-					<Route exact path='/car-register'>
-						<CarRegister />
-					</Route>
-					<Route exact path='/car-information/:id'>
-						<CarInformation />
-					</Route>
-					<Route exact path='/fluid-changes'>
-						<FluidChanges />
-					</Route>
-					<Route exact path='/car-fixes'>
-						<CarFixes />
-					</Route>
-					<Route exact path='/home-page'>
-						<HomePage />
-					</Route>
-				</Switch>
-			</div>
-		</Router>
+		<>
+			{/* <Sidebar /> */}
+			<Router>
+				<div className='root-container'>
+					<Switch>
+						<Route exact path='/'>
+							<Home />
+						</Route>
+						<Route exact path='/car-register'>
+							<CarRegister />
+						</Route>
+						<Route exact path='/car-information/:id'>
+							<CarInformation />
+						</Route>
+						<Route exact path='/fluid-changes'>
+							<FluidChanges />
+						</Route>
+						<Route exact path='/car-fixes'>
+							<CarFixes />
+						</Route>
+						<Route exact path='/home-page'>
+							<HomePage />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+		</>
 	);
 }
 
