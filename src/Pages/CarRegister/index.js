@@ -65,7 +65,6 @@ const CarRegister = ({ saveCarInformation }) => {
 							handleBlur,
 							handleSubmit,
 							isSubmitting,
-							/* and other goodies */
 						}) => (
 							<form onSubmit={handleSubmit}>
 								<FormGroup>
