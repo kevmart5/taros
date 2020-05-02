@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Home from './Pages/Home';
+import Header from './Components/Header';
+import CarRegister from './Pages/CarRegister';
+import CarInformation from './Pages/CarInformation';
+import FluidChanges from './Pages/FluidChages';
+import CarFixes from './Pages/CarFixes';
+import HomePage from './Pages/HomePage';
+import Sidebar from './Components/Sidebar';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			{/* <Sidebar /> */}
+			<Router>
+				<div className='root-container'>
+					<Switch>
+						<Route exact path='/'>
+							<Home />
+						</Route>
+						<Route exact path='/car-register'>
+							<CarRegister />
+						</Route>
+						<Route exact path='/car-information/:id'>
+							<CarInformation />
+						</Route>
+						<Route exact path='/fluid-changes'>
+							<FluidChanges />
+						</Route>
+						<Route exact path='/car-fixes'>
+							<CarFixes />
+						</Route>
+						<Route exact path='/home-page'>
+							<HomePage />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+		</>
+	);
 }
 
 export default App;
