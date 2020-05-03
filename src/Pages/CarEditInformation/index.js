@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -9,11 +9,13 @@ import {
 	Button,
 	TextField,
 } from '@material-ui/core';
+import { appStrings } from '../../constants';
 
 import { Formik } from 'formik';
 
 // Actions
-import { saveCarInformation } from '../../redux/actionCreators/saveCarInfo';
+import { editCarInformationRequest } from '../../redux/actionCreators/cars/editCarInformation';
+import { setCarEditInfo } from '../../redux/actionCreators/cars/setEditCarInfo';
 
 import './styles.css';
 
@@ -31,26 +33,37 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const CarRegister = ({ saveCarInformation }) => {
+const CarEditInformation = ({
+	editCarInformationRequest,
+	car,
+	setCarEditInfo,
+}) => {
+	const [carDetails, setCarDetails] = useState({});
 	const classes = useStyles();
+
+	useMemo(() => {
+		setCarDetails(car);
+	}, [car]);
+
+	useEffect(() => {
+		return () => {
+			setCarEditInfo({});
+		};
+	}, []);
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={4} className='root-container'>
 				<Grid item xs={12}>
-					<h1>Registrar Vehículo</h1>
+					<h1>{appStrings.EDIT_CAR_INFORMATION_TITLE}</h1>
 				</Grid>
 				<Grid item xs={12}>
 					<Formik
 						initialValues={{
-							auto: '',
-							motor: '',
-							year: '',
-							cc: '',
-							plate: '',
-							owner: '',
+							...carDetails,
 						}}
 						onSubmit={(values, { setSubmitting }) => {
-							saveCarInformation(values);
+							editCarInformationRequest(values);
 							setTimeout(() => {
 								setSubmitting(false);
 							}, 400);
@@ -177,7 +190,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-	saveCarInformation,
+	editCarInformationRequest,
+	setCarEditInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarRegister);
+export default connect(mapStateToProps, mapDispatchToProps)(CarEditInformation);

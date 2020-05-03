@@ -34,7 +34,6 @@ export function getCarReports(carId) {
 }
 
 export function getCarFixesReports(carId) {
-	console.log('getCarFixesReports', carId);
 	const { PORT } = backendConstants;
 	return async (dispatch) => {
 		dispatch({

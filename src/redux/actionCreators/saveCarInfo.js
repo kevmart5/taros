@@ -12,7 +12,6 @@ export function saveCarInformation(carInfo) {
 			axios
 				.post(`${PORT}/cars`, carInfo)
 				.then((val) => {
-					console.log('value after post', val);
 					dispatch({
 						type: carsActions.CAR_SAVE_SUCCESS,
 						payload: carInfo,
