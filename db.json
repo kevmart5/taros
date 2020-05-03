@@ -44,6 +44,15 @@
       "plate": "415035",
       "owner": "Silvia Jimena Castro Fernandez",
       "id": 5
+    },
+    {
+      "auto": "Tivoli Sang Jon",
+      "motor": "1600",
+      "year": "2017",
+      "cc": "4",
+      "plate": "BMX-345",
+      "owner": "Mario Cordero Gonzalez",
+      "id": 6
     }
   ],
   "users": [
