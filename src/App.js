@@ -1,30 +1,34 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+	Link,
+} from 'react-router-dom';
 
 import Home from './Pages/Home';
-import Header from './Components/Header';
 import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
 import FluidChanges from './Pages/FluidChages';
 import CarFixes from './Pages/CarFixes';
 import HomePage from './Pages/HomePage';
-import Sidebar from './Components/Sidebar';
+import { EditCar, CarEditInformation } from './Pages';
 
 // Components Material UI
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 
 import './App.css';
 
@@ -59,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	content: {
 		flexGrow: 1,
+		paddingTop: 50,
 	},
 }));
 
@@ -66,87 +71,86 @@ function App(props) {
 	const { container } = props;
 	const classes = useStyles();
 	const theme = useTheme();
+	// const history = useHistory();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
+
 	const drawer = (
 		<div>
 			<div className={classes.toolbar} />
 			<Divider />
+			<CssBaseline />
+			<AppBar position='fixed' className={classes.appBar}>
+				<Toolbar>
+					<IconButton
+						color='inherit'
+						aria-label='open drawer'
+						edge='start'
+						className={classes.menuButton}
+					></IconButton>
+					<Typography variant='h6' noWrap>
+						Taro's Garage
+					</Typography>
+				</Toolbar>
+			</AppBar>
 			<List>
-				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<ListItem button key={text}>
+				{[
+					{ name: 'Inicio', route: '' },
+					{ name: 'Registrar carro', route: 'car-register' },
+					{ name: 'Editar carro', route: 'car-edit' },
+				].map((element, index) => (
+					<ListItem button key={element.route}>
 						{/* <ListItemIcon></ListItemIcon> */}
-						<ListItemText primary={text} />
+						<Link to={`/${element.route}`} className='sidebar-link'>
+							<ListItemText primary={element.name} />
+						</Link>
 					</ListItem>
 				))}
 			</List>
 			<Divider />
-			<List>
-				{['All mail', 'Trash', 'Spam'].map((text, index) => (
-					<ListItem button key={text}>
-						{/* <ListItemIcon></ListItemIcon> */}
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
 		</div>
 	);
 	return (
 		<>
-			<div className={classes.root}>
-				<CssBaseline />
-				<AppBar position='fixed' className={classes.appBar}>
-					<Toolbar>
-						<IconButton
-							color='inherit'
-							aria-label='open drawer'
-							edge='start'
-							onClick={handleDrawerToggle}
-							className={classes.menuButton}
-						></IconButton>
-						<Typography variant='h6' noWrap>
-							Responsive drawer
-						</Typography>
-					</Toolbar>
-				</AppBar>
-				<nav className={classes.drawer} aria-label='mailbox folders'>
-					{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-					<Hidden smUp implementation='css'>
-						<Drawer
-							container={container}
-							variant='temporary'
-							anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-							open={mobileOpen}
-							onClose={handleDrawerToggle}
-							classes={{
-								paper: classes.drawerPaper,
-							}}
-							ModalProps={{
-								keepMounted: true, // Better open performance on mobile.
-							}}
-						>
-							{drawer}
-						</Drawer>
-					</Hidden>
-					<Hidden xsDown implementation='css'>
-						<Drawer
-							classes={{
-								paper: classes.drawerPaper,
-							}}
-							variant='permanent'
-							open
-						>
-							{drawer}
-						</Drawer>
-					</Hidden>
-				</nav>
-				<main className={classes.content}>
-					<div className={classes.toolbar} />
-					<Grid container item lg={12} spacing={3}>
-						<Router>
+			<Router>
+				<div className={classes.root}>
+					<nav className={classes.drawer} aria-label='mailbox folders'>
+						{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+						<Hidden smUp implementation='css'>
+							<Drawer
+								container={container}
+								variant='temporary'
+								anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+								open={mobileOpen}
+								onClose={handleDrawerToggle}
+								classes={{
+									paper: classes.drawerPaper,
+								}}
+								ModalProps={{
+									keepMounted: true, // Better open performance on mobile.
+								}}
+							>
+								{drawer}
+							</Drawer>
+						</Hidden>
+						<Hidden xsDown implementation='css'>
+							<Drawer
+								classes={{
+									paper: classes.drawerPaper,
+								}}
+								variant='permanent'
+								open
+							>
+								{drawer}
+							</Drawer>
+						</Hidden>
+					</nav>
+					<main className={classes.content}>
+						<div className={classes.toolbar} />
+						<Grid container item lg={12} spacing={3}>
 							<Switch>
 								<Route exact path='/'>
 									<Home />
@@ -166,11 +170,17 @@ function App(props) {
 								<Route exact path='/home-page'>
 									<HomePage />
 								</Route>
+								<Route exact path='/car-edit'>
+									<EditCar />
+								</Route>
+								<Route exact path='/car-edit-information'>
+									<CarEditInformation />
+								</Route>
 							</Switch>
-						</Router>
-					</Grid>
-				</main>
-			</div>
+						</Grid>
+					</main>
+				</div>
+			</Router>
 		</>
 	);
 }

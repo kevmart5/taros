@@ -6,7 +6,7 @@ import { FaPen, FaTrashAlt, FaRegEye } from 'react-icons/fa';
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
 
-//Components
+//Components Material UI
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -40,7 +40,7 @@ const Home = ({ getAllCars, cars }) => {
 			<Grid container>
 				<Grid container item lg={12} spacing={3}>
 					<div>
-						<h1>Vehículos registrados</h1>
+						<h1></h1>
 					</div>
 				</Grid>
 				<Grid item xs={12}>
@@ -68,12 +68,6 @@ const Home = ({ getAllCars, cars }) => {
 										<TableCell align='right'>{car.auto}</TableCell>
 										<TableCell align='right'>{car.plate}</TableCell>
 										<TableCell align='right'>
-											<FaPen
-												onClick={() => console.log('Click edit')}
-												style={{
-													marginRight: '8%',
-												}}
-											/>
 											<FaTrashAlt onClick={() => console.log('Click delete')} />
 										</TableCell>
 									</TableRow>
