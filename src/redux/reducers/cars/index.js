@@ -61,6 +61,12 @@ function carsReducer(state = INITIAL_STATE, action) {
 				error: action.error,
 				isLoading: false,
 			};
+		case carsActions.SET_CAR_EDIT_SUCCESS: {
+			return {
+				...state,
+				current: { ...action.payload },
+			};
+		}
 		default:
 			return state;
 	}

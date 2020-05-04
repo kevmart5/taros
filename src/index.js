@@ -7,6 +7,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import store from './redux/store';
+import dotenv from 'dotenv';
+dotenv.config();
 
 ReactDOM.render(
 	<React.StrictMode>
