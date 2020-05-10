@@ -3,13 +3,13 @@ import axios from 'axios';
 import { backendConstants } from '../../../constants/index';
 
 export function getCarInfo(carId) {
-	const { PORT } = backendConstants;
+	const { API_URL } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
 			type: carsActions.CAR_INFO_REQUEST,
 		});
 		axios
-			.get(`${PORT}/cars/${carId}`)
+			.get(`${API_URL}/car/${carId}`)
 			.then((response) => {
 				try {
 					const { data } = response;

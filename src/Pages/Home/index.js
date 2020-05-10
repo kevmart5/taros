@@ -59,7 +59,7 @@ const Home = ({ getAllCars, cars }) => {
 									<TableRow
 										hover
 										role='checkbox'
-										onClick={() => goToCarInfo(car.id)}
+										onClick={() => goToCarInfo(car._id)}
 										key={uniqueId('car')}
 									>
 										<TableCell component='th' scope='row'>

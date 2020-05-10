@@ -3,13 +3,13 @@ import axios from 'axios';
 import { backendConstants } from '../../../constants/index';
 
 export function getCarReports(carId) {
-	const { PORT } = backendConstants;
+	const { API_URL } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
 			type: reportsActions.REPORTS_BY_CAR_REQUEST,
 		});
 		axios
-			.get(`${PORT}/reports?car=${carId}`)
+			.get(`${API_URL}/report/car/${carId}`)
 			.then((response) => {
 				try {
 					const { data } = response;
@@ -34,13 +34,13 @@ export function getCarReports(carId) {
 }
 
 export function getCarFixesReports(carId) {
-	const { PORT } = backendConstants;
+	const { API_URL } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
 			type: reportsActions.REPORTS_FIXES_BY_CAR_REQUEST,
 		});
 		axios
-			.get(`${PORT}/fixes?car=${carId}`)
+			.get(`${API_URL}/fix/car/${carId}`)
 			.then((response) => {
 				try {
 					const { data } = response;

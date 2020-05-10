@@ -3,14 +3,14 @@ import axios from 'axios';
 import { backendConstants } from '../../constants/index';
 
 export function saveCarInformation(carInfo) {
-	const { PORT } = backendConstants;
+	const { API_URL } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
 			type: carsActions.CAR_SAVE_REQUEST,
 		});
 		try {
 			axios
-				.post(`${PORT}/cars`, carInfo)
+				.post(`${API_URL}/car`, carInfo)
 				.then((val) => {
 					dispatch({
 						type: carsActions.CAR_SAVE_SUCCESS,

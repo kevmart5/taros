@@ -3,14 +3,14 @@ import axios from 'axios';
 import { backendConstants } from '../../../constants';
 
 export function editCarInformationRequest(carInfo) {
-	const { PORT } = backendConstants;
+	const { API_URL } = backendConstants;
 	return async (dispatch) => {
 		dispatch({
 			type: carsActions.EDIT_CAR_INFORMATION_REQUEST,
 		});
 		try {
 			axios
-				.put(`${PORT}/cars/${carInfo.id}`, carInfo)
+				.put(`${API_URL}/car`, carInfo)
 				.then((val) => {
 					dispatch({
 						type: carsActions.EDIT_CAR_INFORMATION_SUCCESS,
