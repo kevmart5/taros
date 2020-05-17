@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FaPen, FaCarAlt } from 'react-icons/fa';
 
 // Actions
@@ -23,7 +23,6 @@ import { appStrings } from '../../constants';
 
 const EditCar = ({ getAllCars, cars, setCarEditInfo }) => {
 	const history = useHistory();
-	const [dense, setDense] = useState(false);
 
 	useEffect(() => {
 		getAllCars();
@@ -42,7 +41,7 @@ const EditCar = ({ getAllCars, cars, setCarEditInfo }) => {
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
-					<List dense={dense}>
+					<List dense={false}>
 						{cars.map((car) => (
 							<ListItem key={car._id}>
 								<ListItemAvatar>
