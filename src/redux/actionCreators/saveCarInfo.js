@@ -9,24 +9,18 @@ export function saveCarInformation(carInfo) {
 			type: carsActions.CAR_SAVE_REQUEST,
 		});
 		try {
-			axios
-				.post(`${API_URL}/car`, carInfo)
-				.then((val) => {
-					dispatch({
-						type: carsActions.CAR_SAVE_SUCCESS,
-						payload: carInfo,
-					});
-				})
-				.catch((error) => {
-					dispatch({
-						type: carsActions.CAR_SAVE_FAILURE,
-						error: 'Error saving the car information',
-					});
-				});
+			const response = await axios.post(`${API_URL}/car`, carInfo);
+			dispatch({
+				type: carsActions.CAR_SAVE_SUCCESS,
+				payload: response.data,
+			});
 		} catch (err) {
+			const {
+				data: { message },
+			} = err.response;
 			dispatch({
 				type: carsActions.CAR_SAVE_FAILURE,
-				error: 'Error saving the car information',
+				error: message,
 			});
 		}
 	};

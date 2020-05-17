@@ -4,16 +4,17 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducers';
 
-const logger = createLogger({
-	collapsed: true,
-	duration: true,
-	diff: true,
-});
+let logger = {};
+if (process.env.NODE_ENV === 'development') {
+	logger = createLogger({
+		collapsed: true,
+		duration: true,
+		diff: true,
+	});
+}
 const store = createStore(
 	reducer,
 	composeWithDevTools(applyMiddleware(thunk, logger))
 );
-
-console.log('state:', store.getState());
 
 export default store;

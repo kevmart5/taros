@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {
@@ -9,7 +10,7 @@ import {
 	Button,
 	TextField,
 } from '@material-ui/core';
-
+import AlertMessage from '../../Components/AlertMessage';
 import { Formik } from 'formik';
 
 // Actions
@@ -31,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const CarRegister = ({ saveCarInformation }) => {
+const CarRegister = ({ saveCarInformation, errorRegister }) => {
 	const classes = useStyles();
+	const history = useHistory();
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={4} className='root-container'>
@@ -53,6 +55,7 @@ const CarRegister = ({ saveCarInformation }) => {
 							saveCarInformation(values);
 							setTimeout(() => {
 								setSubmitting(false);
+								history.push('/');
 							}, 400);
 						}}
 					>
@@ -63,7 +66,6 @@ const CarRegister = ({ saveCarInformation }) => {
 							handleChange,
 							handleBlur,
 							handleSubmit,
-							isSubmitting,
 						}) => (
 							<form onSubmit={handleSubmit}>
 								<FormGroup>
@@ -161,6 +163,11 @@ const CarRegister = ({ saveCarInformation }) => {
 										Guardar
 									</Button>
 								</div>
+								{errorRegister && (
+									<div className='error-container'>
+										<AlertMessage message={errorRegister} error={true} />
+									</div>
+								)}
 							</form>
 						)}
 					</Formik>
@@ -173,6 +180,7 @@ const CarRegister = ({ saveCarInformation }) => {
 const mapStateToProps = (state) => {
 	return {
 		car: state.cars.current,
+		errorRegister: state.cars.error,
 	};
 };
 
