@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
-	Link,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
 import FluidChanges from './Pages/FluidChages';
 import CarFixes from './Pages/CarFixes';
-import HomePage from './Pages/HomePage';
 import { EditCar, CarEditInformation } from './Pages';
 
 // Components Material UI
@@ -166,9 +159,6 @@ function App(props) {
 								</Route>
 								<Route exact path='/car-fixes'>
 									<CarFixes />
-								</Route>
-								<Route exact path='/home-page'>
-									<HomePage />
 								</Route>
 								<Route exact path='/car-edit'>
 									<EditCar />

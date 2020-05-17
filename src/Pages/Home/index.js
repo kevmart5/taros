@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
-import { FaPen, FaTrashAlt, FaRegEye } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
 
