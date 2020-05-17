@@ -9,20 +9,11 @@ export function editCarInformationRequest(carInfo) {
 			type: carsActions.EDIT_CAR_INFORMATION_REQUEST,
 		});
 		try {
-			axios
-				.put(`${API_URL}/car`, carInfo)
-				.then((val) => {
-					dispatch({
-						type: carsActions.EDIT_CAR_INFORMATION_SUCCESS,
-						payload: carInfo,
-					});
-				})
-				.catch((error) => {
-					dispatch({
-						type: carsActions.EDIT_CAR_INFORMATION_FAILURE,
-						error: 'Error in edit the car information',
-					});
-				});
+			const response = await axios.put(`${API_URL}/car`, carInfo);
+			dispatch({
+				type: carsActions.EDIT_CAR_INFORMATION_SUCCESS,
+				payload: response.data,
+			});
 		} catch (err) {
 			dispatch({
 				type: carsActions.EDIT_CAR_INFORMATION_FAILURE,

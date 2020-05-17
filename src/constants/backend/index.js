@@ -7,6 +7,7 @@ export const getUrlApi = () => {
 		process.env.NODE_ENV === 'development'
 			? DEVELOMENT_PORT_URL
 			: PRODUCTION_PORT_URL;
+	// const url = PRODUCTION_PORT_URL;
 	return url;
 };
 

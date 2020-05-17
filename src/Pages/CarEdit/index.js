@@ -43,7 +43,7 @@ const EditCar = ({ getAllCars, cars, setCarEditInfo }) => {
 				<Grid item xs={12}>
 					<List dense={false}>
 						{cars.map((car) => (
-							<ListItem key={car.id}>
+							<ListItem key={car._id}>
 								<ListItemAvatar>
 									<Avatar>
 										<FaCarAlt />
