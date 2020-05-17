@@ -8,27 +8,21 @@ export function getAllCars() {
 		dispatch({
 			type: carsActions.CARS_GETALL_REQUEST,
 		});
-		axios
-			.get(`${API_URL}/car`)
-			.then((response) => {
-				try {
-					const { data } = response;
-					dispatch({
-						type: carsActions.CARS_GETALL_SUCCESS,
-						payload: data,
-					});
-				} catch (err) {
-					dispatch({
-						type: carsActions.CARS_GETALL_FAILURE,
-						error: err,
-					});
-				}
-			})
-			.catch((error) => {
-				dispatch({
-					type: carsActions.CARS_GETALL_FAILURE,
-					error: error,
-				});
+		try {
+			const response = await axios.get(`${API_URL}/car`);
+			const { data } = response;
+			dispatch({
+				type: carsActions.CARS_GETALL_SUCCESS,
+				payload: data,
 			});
+		} catch (error) {
+			const {
+				data: { message },
+			} = error.response;
+			dispatch({
+				type: carsActions.CARS_GETALL_FAILURE,
+				error: message,
+			});
+		}
 	};
 }

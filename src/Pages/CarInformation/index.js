@@ -9,6 +9,7 @@ import {
 	getCarReports,
 	getCarFixesReports,
 } from '../../redux/actionCreators/reports/getCarReports';
+import { deleteCarRequest } from '../../redux/actionCreators/cars/deleteCar';
 
 //Components
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +22,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Button from '@material-ui/core/Button';
+
+// Loader
+import Loader from '../../Components/Loader';
 
 import './styles.css';
 
@@ -31,6 +36,9 @@ const CarInformation = ({
 	reports,
 	getCarFixesReports,
 	fixes,
+	deleteCarRequest,
+	isLoading,
+	error,
 }) => {
 	const { id } = useParams();
 	const history = useHistory();
@@ -54,13 +62,34 @@ const CarInformation = ({
 		getCarReports(id);
 		getCarFixesReports(id);
 	}, []);
-	return (
+
+	const onDeleteCar = (car) => {
+		deleteCarRequest(car);
+		if (!isLoading) return history.push('/');
+	};
+
+	return isLoading ? (
+		<Container>
+			<Loader loaderWidth={200} loaderHeight={200} />
+		</Container>
+	) : (
 		<Container maxWidth='xl'>
 			<Grid container>
 				<Grid container item xs={12}>
-					<Typography variant='h2' component='h2'>
-						{car.owner}
-					</Typography>
+					<Grid item xs={10}>
+						<Typography variant='h3' component='h3'>
+							{car.owner}
+						</Typography>
+					</Grid>
+					<Grid item xs={2}>
+						<Button
+							variant='contained'
+							color='secondary'
+							onClick={() => onDeleteCar(car)}
+						>
+							Eliminar{' '}
+						</Button>
+					</Grid>
 				</Grid>
 				<Grid item xs={12}>
 					<Card>
@@ -105,7 +134,7 @@ const CarInformation = ({
 									{reports.map((report) => (
 										<ListItem
 											button
-											key={report.id}
+											key={report._id}
 											onClick={() => goToChangeFluid(report)}
 										>
 											<ListItemIcon>
@@ -123,7 +152,7 @@ const CarInformation = ({
 									{fixes.map((fix) => (
 										<ListItem
 											button
-											key={fix.id}
+											key={fix._id}
 											onClick={() => goToFixes(fix)}
 										>
 											<ListItemIcon>
@@ -151,6 +180,8 @@ const mapStateToProps = (state) => {
 		car: state.cars.current,
 		reports: state.reports.reports,
 		fixes: state.reports.fixes,
+		isLoading: state.cars.isLoading,
+		error: state.cars.error,
 	};
 };
 
@@ -158,6 +189,7 @@ const mapDispatchToProps = {
 	getCarInfo,
 	getCarReports,
 	getCarFixesReports,
+	deleteCarRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarInformation);

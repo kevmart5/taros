@@ -67,6 +67,22 @@ function carsReducer(state = INITIAL_STATE, action) {
 				current: { ...action.payload },
 			};
 		}
+		case carsActions.DELETE_CAR_REQUEST:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case carsActions.DELETE_CAR_SUCCESS:
+			return {
+				...state,
+				isLoading: false,
+			};
+		case carsActions.DELETE_CAR_FAILURE:
+			return {
+				...state,
+				error: action.error,
+				isLoading: false,
+			};
 		default:
 			return state;
 	}

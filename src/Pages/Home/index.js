@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
-import { FaTrashAlt } from 'react-icons/fa';
+
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
 
@@ -18,6 +18,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 
+// Loader
+import Loader from '../../Components/Loader';
+
 import './styles.css';
 
 const useStyles = makeStyles({
@@ -26,7 +29,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const Home = ({ getAllCars, cars }) => {
+const Home = ({ getAllCars, cars, isLoading, deleteCarRequest }) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const goToCarInfo = (id) => {
@@ -35,47 +38,47 @@ const Home = ({ getAllCars, cars }) => {
 	useEffect(() => {
 		getAllCars();
 	}, []);
+
 	return (
 		<Container maxWidth='xl' className='main-container'>
 			<Grid container>
-				<Grid container item lg={12} spacing={3}>
-					<div>
-						<h1></h1>
-					</div>
-				</Grid>
-				<Grid item xs={12}>
-					<TableContainer component={Paper}>
-						<Table className={classes.table} aria-label='simple table'>
-							<TableHead>
-								<TableRow>
-									<TableCell>Cliente</TableCell>
-									<TableCell align='right'>Vehículo</TableCell>
-									<TableCell align='right'>Placa</TableCell>
-									<TableCell align='right'>Opciones</TableCell>
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								{cars.map((car) => (
-									<TableRow
-										hover
-										role='checkbox'
-										onClick={() => goToCarInfo(car._id)}
-										key={uniqueId('car')}
-									>
-										<TableCell component='th' scope='row'>
-											{car.owner}
-										</TableCell>
-										<TableCell align='right'>{car.auto}</TableCell>
-										<TableCell align='right'>{car.plate}</TableCell>
-										<TableCell align='right'>
-											<FaTrashAlt onClick={() => console.log('Click delete')} />
-										</TableCell>
+				{isLoading ? (
+					<Container>
+						<Loader loaderWidth={200} loaderHeight={200} />
+					</Container>
+				) : (
+					<Grid item xs={12}>
+						<TableContainer component={Paper}>
+							<Table className={classes.table} aria-label='simple table'>
+								<TableHead>
+									<TableRow>
+										<TableCell>Cliente</TableCell>
+										<TableCell align='right'>Vehículo</TableCell>
+										<TableCell align='right'>Placa</TableCell>
+										<TableCell align='right'>Año</TableCell>
 									</TableRow>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</Grid>
+								</TableHead>
+								<TableBody>
+									{cars.map((car) => (
+										<TableRow
+											hover
+											role='button'
+											onClick={() => goToCarInfo(car._id)}
+											key={uniqueId('car')}
+										>
+											<TableCell component='th' scope='row'>
+												{car.owner}
+											</TableCell>
+											<TableCell align='right'>{car.auto}</TableCell>
+											<TableCell align='right'>{car.plate}</TableCell>
+											<TableCell align='right'>{car.year}</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</TableContainer>
+					</Grid>
+				)}
 			</Grid>
 		</Container>
 	);
@@ -84,6 +87,7 @@ const Home = ({ getAllCars, cars }) => {
 const mapStateToProps = (state) => {
 	return {
 		cars: state.cars.cars,
+		isLoading: state.cars.isLoading,
 	};
 };
 
