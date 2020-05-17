@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
-import { FaTrashAlt } from 'react-icons/fa';
+
 // Actions
 import { getAllCars } from '../../redux/actionCreators/getAllCars';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const Home = ({ getAllCars, cars, isLoading }) => {
+const Home = ({ getAllCars, cars, isLoading, deleteCarRequest }) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const goToCarInfo = (id) => {
@@ -38,6 +38,7 @@ const Home = ({ getAllCars, cars, isLoading }) => {
 	useEffect(() => {
 		getAllCars();
 	}, []);
+
 	return (
 		<Container maxWidth='xl' className='main-container'>
 			<Grid container>
@@ -54,14 +55,14 @@ const Home = ({ getAllCars, cars, isLoading }) => {
 										<TableCell>Cliente</TableCell>
 										<TableCell align='right'>Vehículo</TableCell>
 										<TableCell align='right'>Placa</TableCell>
-										<TableCell align='right'>Opciones</TableCell>
+										<TableCell align='right'>Año</TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
 									{cars.map((car) => (
 										<TableRow
 											hover
-											role='checkbox'
+											role='button'
 											onClick={() => goToCarInfo(car._id)}
 											key={uniqueId('car')}
 										>
@@ -70,11 +71,7 @@ const Home = ({ getAllCars, cars, isLoading }) => {
 											</TableCell>
 											<TableCell align='right'>{car.auto}</TableCell>
 											<TableCell align='right'>{car.plate}</TableCell>
-											<TableCell align='right'>
-												<FaTrashAlt
-													onClick={() => console.log('Click delete')}
-												/>
-											</TableCell>
+											<TableCell align='right'>{car.year}</TableCell>
 										</TableRow>
 									))}
 								</TableBody>
