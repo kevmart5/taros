@@ -64,7 +64,6 @@ function App(props) {
 	const { container } = props;
 	const classes = useStyles();
 	const theme = useTheme();
-	// const history = useHistory();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
 	const handleDrawerToggle = () => {
@@ -95,12 +94,11 @@ function App(props) {
 					{ name: 'Registrar carro', route: 'car-register' },
 					{ name: 'Editar carro', route: 'car-edit' },
 				].map((element, index) => (
-					<ListItem button key={element.route}>
-						{/* <ListItemIcon></ListItemIcon> */}
-						<Link to={`/${element.route}`} className='sidebar-link'>
+					<Link to={`/${element.route}`} className='sidebar-link'>
+						<ListItem button key={element.route}>
 							<ListItemText primary={element.name} />
-						</Link>
-					</ListItem>
+						</ListItem>
+					</Link>
 				))}
 			</List>
 			<Divider />

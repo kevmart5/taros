@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {
@@ -10,6 +11,7 @@ import {
 	TextField,
 } from '@material-ui/core';
 import { appStrings } from '../../constants';
+import AlertMessage from '../../Components/AlertMessage';
 
 import { Formik } from 'formik';
 
@@ -37,9 +39,11 @@ const CarEditInformation = ({
 	editCarInformationRequest,
 	car,
 	setCarEditInfo,
+	errorEdit,
 }) => {
 	const [carDetails, setCarDetails] = useState({});
 	const classes = useStyles();
+	const history = useHistory();
 
 	useMemo(() => {
 		setCarDetails(car);
@@ -66,6 +70,7 @@ const CarEditInformation = ({
 							editCarInformationRequest(values);
 							setTimeout(() => {
 								setSubmitting(false);
+								history.push('/');
 							}, 400);
 						}}
 					>
@@ -174,6 +179,11 @@ const CarEditInformation = ({
 										Guardar
 									</Button>
 								</div>
+								{errorEdit && (
+									<div className='error-container'>
+										<AlertMessage message={errorEdit} error={true} />
+									</div>
+								)}
 							</form>
 						)}
 					</Formik>
@@ -186,6 +196,7 @@ const CarEditInformation = ({
 const mapStateToProps = (state) => {
 	return {
 		car: state.cars.current,
+		errorEdit: state.cars.error,
 	};
 };
 
