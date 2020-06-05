@@ -4,6 +4,7 @@ const INITIAL_STATE = {
 	isLoading: false,
 	error: '',
 	current: {},
+	register: false,
 };
 
 function carsReducer(state = INITIAL_STATE, action) {
@@ -31,18 +32,21 @@ function carsReducer(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				isLoading: true,
+				register: false,
 			};
 		case carsActions.CAR_SAVE_SUCCESS:
 			return {
 				...state,
 				current: { ...action.payload },
 				isLoading: false,
+				register: true,
 			};
 		case carsActions.CAR_SAVE_FAILURE:
 			return {
 				...state,
 				error: action.error,
 				isLoading: false,
+				register: false,
 			};
 		case carsActions.CAR_INFO_REQUEST:
 			return {

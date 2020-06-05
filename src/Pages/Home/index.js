@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const Home = ({ getAllCars, cars, isLoading, deleteCarRequest }) => {
+const Home = ({ getAllCars, cars, isLoading }) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const goToCarInfo = (id) => {
@@ -37,6 +37,7 @@ const Home = ({ getAllCars, cars, isLoading, deleteCarRequest }) => {
 	};
 	useEffect(() => {
 		getAllCars();
+		return;
 	}, []);
 
 	return (

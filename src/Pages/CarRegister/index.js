@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +15,7 @@ import { Formik } from 'formik';
 
 // Actions
 import { saveCarInformation } from '../../redux/actionCreators/saveCarInfo';
+import { appStrings } from '../../constants';
 
 import './styles.css';
 
@@ -32,9 +33,35 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const CarRegister = ({ saveCarInformation, errorRegister }) => {
+const CarRegister = ({ saveCarInformation, error, isLoading, registerCar }) => {
 	const classes = useStyles();
 	const history = useHistory();
+	const [formInitialValues, setFormInitialValues] = useState({
+		auto: '',
+		motor: '',
+		year: '',
+		cc: '',
+		plate: '',
+		owner: '',
+	});
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [successMessage, setSuccessMessage] = useState('');
+
+	useEffect(() => {
+		onSuccessSaveCar();
+		return () => {};
+	}, [registerCar]);
+
+	const onSaveCarInformation = (values) => {
+		saveCarInformation(values);
+	};
+
+	const onSuccessSaveCar = () => {
+		const message = appStrings.CAR_SUCCESS_SAVE_MESSAGE;
+		setShowSuccessMessage(true);
+		setSuccessMessage(message);
+	};
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={4} className='root-container'>
@@ -43,20 +70,9 @@ const CarRegister = ({ saveCarInformation, errorRegister }) => {
 				</Grid>
 				<Grid item xs={12}>
 					<Formik
-						initialValues={{
-							auto: '',
-							motor: '',
-							year: '',
-							cc: '',
-							plate: '',
-							owner: '',
-						}}
+						initialValues={formInitialValues}
 						onSubmit={(values, { setSubmitting }) => {
-							saveCarInformation(values);
-							setTimeout(() => {
-								setSubmitting(false);
-								history.push('/');
-							}, 400);
+							onSaveCarInformation(values);
 						}}
 					>
 						{({
@@ -159,13 +175,23 @@ const CarRegister = ({ saveCarInformation, errorRegister }) => {
 									</FormControl>
 								</FormGroup>
 								<div className='form--button'>
-									<Button variant='contained' color='primary' type='submit'>
+									<Button
+										variant='contained'
+										color='primary'
+										type='submit'
+										disabled={isLoading}
+									>
 										Guardar
 									</Button>
 								</div>
-								{errorRegister && (
+								{error && (
 									<div className='error-container'>
-										<AlertMessage message={errorRegister} error={true} />
+										<AlertMessage message={error} error={true} />
+									</div>
+								)}
+								{showSuccessMessage && (
+									<div className='error-container'>
+										<AlertMessage message={successMessage} error={false} />
 									</div>
 								)}
 							</form>
@@ -180,7 +206,9 @@ const CarRegister = ({ saveCarInformation, errorRegister }) => {
 const mapStateToProps = (state) => {
 	return {
 		car: state.cars.current,
-		errorRegister: state.cars.error,
+		error: state.cars.error,
+		isLoading: state.cars.isLoading,
+		registerCar: state.cars.register,
 	};
 };
 

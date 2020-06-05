@@ -10,6 +10,7 @@ import {
 	getCarFixesReports,
 } from '../../redux/actionCreators/reports/getCarReports';
 import { deleteCarRequest } from '../../redux/actionCreators/cars/deleteCar';
+import { setCarEditInfo } from '../../redux/actionCreators/cars/setEditCarInfo';
 
 //Components
 import Grid from '@material-ui/core/Grid';
@@ -39,6 +40,7 @@ const CarInformation = ({
 	deleteCarRequest,
 	isLoading,
 	error,
+	setCarEditInfo,
 }) => {
 	const { id } = useParams();
 	const history = useHistory();
@@ -68,6 +70,11 @@ const CarInformation = ({
 		if (!isLoading) return history.push('/');
 	};
 
+	const onEditCar = (car) => {
+		setCarEditInfo(car);
+		history.push('/car-edit-information');
+	};
+
 	return isLoading ? (
 		<Container>
 			<Loader loaderWidth={200} loaderHeight={200} />
@@ -76,19 +83,35 @@ const CarInformation = ({
 		<Container maxWidth='xl'>
 			<Grid container>
 				<Grid container item xs={12}>
-					<Grid item xs={10}>
+					<Grid item xs={9}>
 						<Typography variant='h3' component='h3'>
 							{car.owner}
 						</Typography>
 					</Grid>
-					<Grid item xs={2}>
-						<Button
-							variant='contained'
-							color='secondary'
-							onClick={() => onDeleteCar(car)}
-						>
-							Eliminar{' '}
-						</Button>
+					<Grid item xs={3} spacing={1}>
+						<Grid container spacing={1}>
+							<Grid container item xs={12} spacing={3}>
+								<Grid item xs={3}>
+									<Button
+										variant='contained'
+										color='primary'
+										onClick={() => onEditCar(car)}
+										className='car-options--button'
+									>
+										Editar{' '}
+									</Button>
+								</Grid>
+								<Grid item xs={3}>
+									<Button
+										variant='contained'
+										color='secondary'
+										onClick={() => onDeleteCar(car)}
+									>
+										Eliminar{' '}
+									</Button>
+								</Grid>
+							</Grid>
+						</Grid>
 					</Grid>
 				</Grid>
 				<Grid item xs={12}>
@@ -190,6 +213,7 @@ const mapDispatchToProps = {
 	getCarReports,
 	getCarFixesReports,
 	deleteCarRequest,
+	setCarEditInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarInformation);

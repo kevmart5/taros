@@ -49,7 +49,7 @@ const EditCar = ({ getAllCars, cars, setCarEditInfo }) => {
 										<FaCarAlt />
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary={car.auto} />
+								<ListItemText primary={car.auto} secondary={car.owner} />
 								<ListItemSecondaryAction>
 									<FaPen
 										onClick={() => setCarToEdit(car)}
