@@ -45,10 +45,10 @@ const CarInformation = ({
 	const { id } = useParams();
 	const history = useHistory();
 
-	const goToChangeFluid = (params) => {
+	const goToChangeFluid = ({ report, car }) => {
 		history.push({
 			pathname: '/fluid-changes',
-			state: { change: params },
+			state: { change: report, car },
 		});
 	};
 
@@ -158,7 +158,7 @@ const CarInformation = ({
 										<ListItem
 											button
 											key={report._id}
-											onClick={() => goToChangeFluid(report)}
+											onClick={() => goToChangeFluid({ report, car })}
 										>
 											<ListItemIcon>
 												<FaRegFolder

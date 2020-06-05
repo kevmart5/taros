@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 // Actions
 import { getCarInfo } from '../../redux/actionCreators/cars/getCarInfo';
@@ -14,16 +14,28 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+import { appStrings } from '../../constants';
+
 const FluidChanges = ({}) => {
 	const location = useLocation();
-	const { change } = location.state;
+	const history = useHistory();
+	const { change, car } = location.state;
+
+	const onCreateFluidChangeReport = (car) => {
+		console.log('Report car', car);
+		// setCarEditInfo(car);
+		// history.push('/car-edit-information');
+	};
+
 	return (
 		<Container maxWidth='xl'>
 			<Grid container>
 				<Grid container item xs={12}>
-					<Typography variant='h2' component='h2'>
-						Cambio de aceite y fluidos
-					</Typography>
+					<Grid item xs={9}>
+						<Typography variant='h3' component='h3'>
+							{appStrings.FLUID_CHANGES_TITLE}
+						</Typography>
+					</Grid>
 				</Grid>
 				<Grid item xs={12}>
 					<Card>
