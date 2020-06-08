@@ -6,6 +6,8 @@ import CarRegister from './Pages/CarRegister';
 import CarInformation from './Pages/CarInformation';
 import FluidChanges from './Pages/FluidChages';
 import CarFixes from './Pages/CarFixes';
+import CarDeleteInformation from './Pages/DeleteCar';
+import CarReport from './Pages/CarReports';
 import { EditCar, CarEditInformation } from './Pages';
 
 // Components Material UI
@@ -65,6 +67,13 @@ function App(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
+	const menuItems = [
+		{ name: 'Inicio', route: '' },
+		{ name: 'Registrar vehículo', route: 'car-register' },
+		{ name: 'Editar vehículo', route: 'car-edit' },
+		{ name: 'Crear reporte', route: 'car-report' },
+		{ name: 'Eliminar vehículos', route: 'car-delete' },
+	];
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
@@ -89,11 +98,7 @@ function App(props) {
 				</Toolbar>
 			</AppBar>
 			<List>
-				{[
-					{ name: 'Inicio', route: '' },
-					{ name: 'Registrar carro', route: 'car-register' },
-					{ name: 'Editar carro', route: 'car-edit' },
-				].map((element, index) => (
+				{menuItems.map((element, index) => (
 					<Link to={`/${element.route}`} className='sidebar-link' key={index}>
 						<ListItem button key={element.route}>
 							<ListItemText primary={element.name} />
@@ -163,6 +168,12 @@ function App(props) {
 								</Route>
 								<Route exact path='/car-edit-information'>
 									<CarEditInformation />
+								</Route>
+								<Route exact path='/car-delete'>
+									<CarDeleteInformation />
+								</Route>
+								<Route exact path='/car-report/:id'>
+									<CarReport />
 								</Route>
 							</Switch>
 						</Grid>

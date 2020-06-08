@@ -37,7 +37,7 @@ const EditCar = ({ getAllCars, cars, setCarEditInfo }) => {
 			<Grid container>
 				<Grid container item xs={12}>
 					<Typography variant='h2' component='h2'>
-						{appStrings.EDIT_CAR_PAGE_TITLE}
+						{appStrings.DELETE_CAR_PAGE_TITLE}
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>

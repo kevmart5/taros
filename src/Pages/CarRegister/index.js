@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import {
@@ -35,19 +34,19 @@ const useStyles = makeStyles((theme) => ({
 
 const CarRegister = ({ saveCarInformation, error, isLoading, registerCar }) => {
 	const classes = useStyles();
-	const history = useHistory();
-	const [formInitialValues, setFormInitialValues] = useState({
-		auto: '',
-		motor: '',
-		year: '',
-		cc: '',
-		plate: '',
-		owner: '',
-	});
+	const [formInitialValues, setFormInitialValues] = useState({});
 	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 	const [successMessage, setSuccessMessage] = useState('');
 
 	useEffect(() => {
+		setFormInitialValues({
+			auto: '',
+			motor: '',
+			year: '',
+			cc: '',
+			plate: '',
+			owner: '',
+		});
 		onSuccessSaveCar();
 		return () => {};
 	}, [registerCar]);

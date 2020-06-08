@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { FaRegFolder } from 'react-icons/fa';
@@ -24,9 +24,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 // Loader
 import Loader from '../../Components/Loader';
+
+// Strings
+import { appStrings } from '../../constants';
 
 import './styles.css';
 
@@ -44,6 +49,8 @@ const CarInformation = ({
 }) => {
 	const { id } = useParams();
 	const history = useHistory();
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [currentCar, setCurrentCar] = useState({});
 
 	const goToChangeFluid = ({ report, car }) => {
 		history.push({
@@ -65,14 +72,72 @@ const CarInformation = ({
 		getCarFixesReports(id);
 	}, []);
 
-	const onDeleteCar = (car) => {
-		deleteCarRequest(car);
-		if (!isLoading) return history.push('/');
-	};
+	// const onDeleteCar = (car) => {
+	// 	deleteCarRequest(car);
+	// 	if (!isLoading) return history.push('/');
+	// };
 
 	const onEditCar = (car) => {
 		setCarEditInfo(car);
 		history.push('/car-edit-information');
+	};
+
+	const handleOpenMenuReportsCar = (event, car) => {
+		console.log('current car', car);
+		setCurrentCar(car);
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleCloseReportsMenu = () => {
+		setAnchorEl(null);
+	};
+
+	const goReportsPage = () => {
+		history.push(`/car-report/${currentCar._id}`);
+	};
+
+	const renderCarButtonOptions = () => {
+		return (
+			<Grid container item xs={12} spacing={3}>
+				<Grid item xs={3}>
+					<Button
+						variant='contained'
+						color='primary'
+						onClick={() => onEditCar(car)}
+						className='car-options--button'
+					>
+						Editar{' '}
+					</Button>
+				</Grid>
+				<Grid item xs={3}>
+					<Button
+						variant='contained'
+						color='primary'
+						onClick={(e) => handleOpenMenuReportsCar(e, car)}
+						className='car-options--button'
+					>
+						Reportes{' '}
+					</Button>
+					<Menu
+						id='simple-menu'
+						anchorEl={anchorEl}
+						keepMounted
+						open={Boolean(anchorEl)}
+						onClose={handleCloseReportsMenu}
+					>
+						<MenuItem onClick={goReportsPage}>
+							{appStrings.CREATE_REPORTS_MENU_ITEM}
+						</MenuItem>
+						<MenuItem onClick={handleCloseReportsMenu}>
+							{appStrings.CREATE_FIXES_MENU_ITEM}
+						</MenuItem>
+						<MenuItem onClick={handleCloseReportsMenu}>
+							{appStrings.CLOSE_REPORTS_MENU}
+						</MenuItem>
+					</Menu>
+				</Grid>
+			</Grid>
+		);
 	};
 
 	return isLoading ? (
@@ -90,27 +155,7 @@ const CarInformation = ({
 					</Grid>
 					<Grid item xs={3} spacing={1}>
 						<Grid container spacing={1}>
-							<Grid container item xs={12} spacing={3}>
-								<Grid item xs={3}>
-									<Button
-										variant='contained'
-										color='primary'
-										onClick={() => onEditCar(car)}
-										className='car-options--button'
-									>
-										Editar{' '}
-									</Button>
-								</Grid>
-								<Grid item xs={3}>
-									<Button
-										variant='contained'
-										color='secondary'
-										onClick={() => onDeleteCar(car)}
-									>
-										Eliminar{' '}
-									</Button>
-								</Grid>
-							</Grid>
+							{renderCarButtonOptions()}
 						</Grid>
 					</Grid>
 				</Grid>

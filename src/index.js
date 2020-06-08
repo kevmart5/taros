@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import store from './redux/store';
 import dotenv from 'dotenv';
@@ -13,7 +15,9 @@ dotenv.config();
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<App />
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				<App />
+			</MuiPickersUtilsProvider>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
